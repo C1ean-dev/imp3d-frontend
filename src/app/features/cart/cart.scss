@@ -1,0 +1,15 @@
+.cart {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto;
+  animation: fadeIn .6s ease both;
+}
+.cart > div {
+  display: grid;
+ 
+
+ grid-template-columns: 1fr auto auto auto;
+  gap: 8px;
+  align-items: center;
+}

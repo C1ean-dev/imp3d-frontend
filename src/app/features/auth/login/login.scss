@@ -1,0 +1,29 @@
+.auth {
+  max-width: 420px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(214, 168, 255, 0.15);
+  animation: fadeIn .6s ease both;
+}
+form { display: grid; gap: 12px; }
+
+.auth a {
+  color: #e9ddff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(214,168,255,0.35);
+  background: rgba(255,255,255,0.06);
+  text-align: center;
+  transition: transform .2s ease, background .2s ease, border .2s ease;
+}
+.auth a:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(214,168,255,0.7);
+}

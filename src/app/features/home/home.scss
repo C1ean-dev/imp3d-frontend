@@ -1,0 +1,36 @@
+.home {
+  display: grid;
+  gap: 24px;
+  animation: fadeIn .6s ease both;
+}
+.home h1 { font-size: 40px; font-weight: 700; }
+.home > div { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.home a[mat-raised-button] {
+  background: linear-gradient(135deg, #7a2bff, #b06bff);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(122,43,255,0.35);
+}
+.home a[mat-raised-button]:hover { filter: brightness(1.1); }
+.home a[mat-button] { color: #e9ddff; }
+
+.home .grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.home mat-card {
+  background: rgba(255,255,255,0.06);
+  color: #e9ddff;
+  border: 1px solid rgba(214,168,255,0.25);
+  font-family: inherit !important;
+  text-align: center;
+}
+.home mat-card-title,
+.home mat-card-content,
+.home mat-card-subtitle,
+.home mat-card * {
+  font-family: inherit !important;
+  text-align: center;
+}
+.home mat-card-title { color: #fff; }

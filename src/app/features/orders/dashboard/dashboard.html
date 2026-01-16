@@ -1,0 +1,12 @@
+<div class="orders">
+  <h2>Meus pedidos</h2>
+  <mat-card *ngFor="let o of (orders$ | async)">
+    <mat-card-title>Pedido {{ o.id }}</mat-card-title>
+    <mat-card-content>
+      <div>Status: {{ o.status }}</div>
+      <div>Total: R$ {{ o.total }}</div>
+      <div>Data: {{ o.createdAt }}</div>
+      <a *ngIf="o.invoiceUrl" [href]="o.invoiceUrl" target="_blank">Baixar fatura</a>
+    </mat-card-content>
+  </mat-card>
+</div>

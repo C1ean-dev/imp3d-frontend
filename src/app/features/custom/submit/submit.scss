@@ -1,0 +1,29 @@
+.custom {
+  max-width: 640px;
+  margin: 0 auto;
+  animation: fadeIn .6s ease both;
+}
+form { display: grid; gap: 12px; }
+
+.file-upload {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px dashed rgba(214,168,255,0.45);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: border .2s ease, background .2s ease;
+}
+.file-upload:hover {
+  border-color: rgba(214,168,255,0.8);
+  background: rgba(255,255,255,0.06);
+}
+.file-upload input[type="file"] { display: none; }
+.file-upload span {
+  color: #e9ddff;
+}
+.file-name {
+  font-size: 12px;
+  opacity: .8;
+}

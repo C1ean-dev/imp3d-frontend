@@ -1,0 +1,18 @@
+<div class="cart" *ngIf="items$ | async as items">
+  <h2>Carrinho</h2>
+  <div *ngFor="let i of items">
+    <div>{{ i.item?.name || i.custom?.fileName }}</div>
+    <div>Qtd: {{ i.quantity }}</div>
+    <div>R$ {{ i.price }}</div>
+    <button mat-button (click)="remove(i.id)">Remover</button>
+  </div>
+  <h3>Total: R$ {{ total(items) }}</h3>
+  <form [formGroup]="form">
+    <mat-select formControlName="method">
+      <mat-option value="card">Cartão</mat-option>
+      <mat-option value="paypal">PayPal</mat-option>
+      <mat-option value="crypto">Cripto</mat-option>
+    </mat-select>
+  </form>
+  <button mat-raised-button color="primary" (click)="checkout(items)" [disabled]="loading">Pagar</button>
+</div>

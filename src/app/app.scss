@@ -1,0 +1,32 @@
+.page {
+  padding: 32px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+mat-toolbar {
+  background: linear-gradient(90deg, #5b2b82, #8e24aa, #512da8);
+  color: white;
+}
+mat-toolbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  opacity: .9;
+  transition: opacity .2s ease;
+}
+mat-toolbar a:hover { opacity: 1; }
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-left: 8px;
+}
+.spacer { flex: 1 1 auto; }
+.nav-links { display: flex; gap: 8px; }
+.menu-button { display: none; }
+
+@media (max-width: 768px) {
+  .page { padding: 20px 12px; }
+  mat-toolbar { flex-wrap: wrap; gap: 8px; }
+  .nav-links { display: none; }
+  .menu-button { display: inline-flex; }
+}

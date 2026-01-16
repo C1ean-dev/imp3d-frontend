@@ -1,0 +1,15 @@
+<mat-card *ngIf="item$ | async as item" >
+  <img mat-card-image [src]="item.imageUrl" [alt]="item.name
+
+">
+  <mat-card-title>{{ item.name }}</mat-card-title>
+  <mat-card-subtitle>R$ {{ item.price }}</mat-card-subtitle>
+  <mat-card-content>
+    <p>{{ item.description }}</p>
+    <p>Categoria: {{ item.category }}</p>
+    <p>Material: {{ item.material }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addToCart(item)">Adicionar ao carrinho</button>
+  </mat-card-actions>
+</mat-card>

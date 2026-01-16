@@ -1,0 +1,24 @@
+<div class="support">
+  <h2>Suporte</h2>
+  <h3>FAQs</h3>
+  <div *ngFor="let f of (faqs$ |
+
+ async)">
+    <strong>{{ f.question }}</strong>
+    <div>{{ f.answer }}</div>
+  </div>
+
+  <h3>Abrir ticket</h3>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Assunto</mat-label>
+      <input matInput formControlName="subject">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mensagem</mat-label>
+      <input matInput formControlName="message">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Enviar</button>
+    <div *ngIf="sent">Ticket enviado</div>
+  </form>
+</div>

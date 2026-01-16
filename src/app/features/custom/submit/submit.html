@@ -1,0 +1,31 @@
+<div class="custom">
+  <h2>Solicitar personalização</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Material</mat-label>
+      <input matInput formControlName="material">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Cor</mat-label>
+      <input matInput formControlName="color">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Dimensões</mat-label>
+      <input matInput formControlName="dimensions">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Observações</mat-label>
+      <input matInput formControlName="notes">
+    </mat-form-field>
+
+    <label class="file-upload">
+      <input type="file" (change)="onFileChange($event)">
+      <span>Escolher arquivo</span>
+      <span class="file-name">{{ file?.name || 'Nenhum arquivo selecionado' }}</span>
+    </label>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading">Enviar</button>
+    <div *ngIf="success">Enviado com sucesso</div>
+    <div *ngIf="error">{{ error }}</div>
+  </form>
+</div>

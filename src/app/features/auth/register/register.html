@@ -1,0 +1,20 @@
+<div class="auth" >
+  <h2>Cadastro</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="password" type="password">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading">Cadastrar</button>
+    <a routerLink="/auth/login">Já tenho conta</a>
+    <div *ngIf="error">{{ error }}</div>
+  </form>
+</div>
