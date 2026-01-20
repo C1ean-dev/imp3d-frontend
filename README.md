@@ -1,6 +1,7 @@
 # Imp3dFrontend
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Visit https://c1ean-dev.github.io/imp3d-frontend/ to see the latest deployment
 
 ## Development server
 
