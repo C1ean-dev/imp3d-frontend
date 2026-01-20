@@ -1,10 +1,39 @@
 <div class="home">
-  <h1>Impressão 3D sob medida</h1>
-  <p>Peças personalizadas, catálogo pronto e acompanhamento completo.</p>
+  <h1>Impressão 3D</h1>
+  <p>Peças no catálogo pronto e acompanhamento completo.</p>
   <div>
     <a mat-raised-button color="primary" routerLink="/catalog">Ver catálogo</a>
     <a mat-button routerLink="/custom">Enviar projeto</a>
   </div>
+
+  <section class="carousel" #carouselHost>
+    <div class="carousel-header">
+      <h2>Mais vendidos</h2>
+      <div class="controls">
+        <button mat-raised-button class="ctrl" (click)="prevManual()" [disabled]="!canNavigate()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-raised-button class="ctrl" (click)="nextManual()" [disabled]="!canNavigate()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+        <button mat-raised-button class="ctrl" (click)="togglePlay()" [disabled]="!canNavigate()">
+          <mat-icon>{{ isPlaying() ? 'pause' : 'play_arrow' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel-body" *ngIf="activeItem() as item">
+      <div class="carousel-image">
+        <img [src]="item.imageUrl" [alt]="item.name" loading="eager">
+      </div>
+      <div class="carousel-info">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <div class="price">R$ {{ item.price }}</div>
+        <a mat-raised-button color="primary" [routerLink]="['/catalog', item.id]">Ver produto</a>
+      </div>
+    </div>
+  </section>
 
   <h2>Destaques</h2>
   <div class="grid">
@@ -14,12 +43,10 @@
     </mat-card>
     <mat-card>
       <mat-card-title>Materiais variados</mat-card-title>
-      <mat-card-content>PLA, ABS, PETG, resina e mais.</mat-card-content>
+      <mat-card-content>PLA, PETG.</mat-card-content>
     </mat-card>
     <mat-card>
-      <mat-card-title>Su
-
-porte dedicado</mat-card-title>
+      <mat-card-title>Suporte dedicado</mat-card-title>
       <mat-card-content>Equipe pronta para tirar dúvidas.</mat-card-content>
     </mat-card>
   </div>

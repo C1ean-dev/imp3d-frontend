@@ -1,9 +1,7 @@
 <div class="support">
   <h2>Suporte</h2>
   <h3>FAQs</h3>
-  <div *ngFor="let f of (faqs$ |
-
- async)">
+  <div *ngFor="let f of (faqs$ | async)" class="faq-item">
     <strong>{{ f.question }}</strong>
     <div>{{ f.answer }}</div>
   </div>
@@ -11,14 +9,18 @@
   <h3>Abrir ticket</h3>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Assunto</mat-label>
       <input matInput formControlName="subject">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Mensagem</mat-label>
-      <input matInput formControlName="message">
+      <textarea matInput formControlName="message" rows="4"></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Enviar</button>
-    <div *ngIf="sent">Ticket enviado</div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Enviar</button>
+    <div *ngIf="sent" class="success-msg">Ticket enviado com sucesso!</div>
   </form>
 </div>

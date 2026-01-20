@@ -3,36 +3,40 @@
   <form [formGroup]="form" class="filters">
     <mat-form-field appearance="outline">
       <mat-label>Buscar</mat-label>
-      <input matInput formControlName="q">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Categoria</mat-label>
-      <input matInput formControlName="category">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Material</mat-label>
-      <input matInput formControlName="material">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Preço mín</mat-label>
-      <input matInput formControlName="min" type="number">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Preço máx</mat-label>
-      <input matInput formControlName="max" type="number">
+      <input matInput formControlName="searchQuery">
     </mat-form-field>
   </form>
 
   <div class="grid">
-    <mat-card *ngFor="let item of (items$ | async)">
-      <img mat-card-image [src]="item.imageUrl" [alt]="item.name">
-      <mat-card-title>{{ item.name }}</mat-card-title>
-      <mat-card-subtitle>R$ {{ item.price }}</mat-card-subtitle>
-      <mat-card-content>{{ item.description }}</mat-card-content>
-      <mat-card-actions>
-        <a mat-button [routerLink]="['/catalog', item.id]">Ver</a>
-        <button mat-raised-button color="primary" (click)="addToCart(item)">Adicionar</button>
-      </mat-card-actions>
-    </mat-card>
+    <ng-container *ngIf="isLoading(); else content">
+      <mat-card *ngFor="let i of [1,2,3,4]" class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-title"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-actions"></div>
+      </mat-card>
+    </ng-container>
+
+    <ng-template #content>
+      <mat-card *ngFor="let item of (items$ | async)">
+        <img mat-card-image [src]="item.imageUrl" [alt]="item.name">
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-subtitle>R$ {{ item.price }}</mat-card-subtitle>
+        <mat-card-content>{{ item.description }}</mat-card-content>
+        <mat-card-actions>
+          <a mat-button [routerLink]="['/catalog', item.id]">Ver</a>
+          <button mat-raised-button color="primary" (click)="addToCart(item)">Adicionar</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-template>
   </div>
+
+  <mat-paginator 
+    [length]="totalItems()"
+    [pageSize]="pageSize()"
+    [pageIndex]="pageIndex()"
+    [pageSizeOptions]="[2, 4, 8]"
+    (page)="handlePageEvent($event)"
+    aria-label="Selecionar página">
+  </mat-paginator>
 </div>

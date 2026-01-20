@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
 import { Home } from './home';
+import { CatalogService } from '../../core/services/catalog/catalog.service';
 
 describe('Home', () => {
   let component: Home;
@@ -8,7 +9,8 @@ describe('Home', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Home]
+      imports: [Home],
+      providers: [{ provide: CatalogService, useValue: { getCatalog: () => of([]) } }]
     })
     .compileComponents();
 

@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-support',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './support.html',
   styleUrl: './support.scss',
@@ -22,14 +23,19 @@ export class Support {
   sent = false;
 
   form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
     subject: ['', Validators.required],
     message: ['', Validators.required]
   });
 
   submit(): void {
     if (this.form.invalid) return;
-    this.support.submitTicket(this.form.value.subject!, this.form.value.message!).subscribe({
-      next: () => { this.sent = true; this.form.reset(); }
+    const { email, subject, message } = this.form.getRawValue();
+    this.support.submitTicket(subject!, message!).subscribe({
+      next: () => { 
+        this.sent = true; 
+        this.form.reset(); 
+      }
     });
   }
 }

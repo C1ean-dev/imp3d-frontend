@@ -8,10 +8,18 @@
     <a mat-button routerLink="/">Home</a>
     <a mat-button routerLink="/catalog">Catálogo</a>
     <a mat-button routerLink="/custom">Personalizar</a>
-    <a mat-button routerLink="/cart">Carrinho</a>
-    <a mat-button routerLink="/orders">Pedidos</a>
+    <ng-container *ngIf="user$ | async">
+      <a mat-button routerLink="/cart">Carrinho</a>
+      <a mat-button routerLink="/orders">Pedidos</a>
+    </ng-container>
     <a mat-button routerLink="/support">Suporte</a>
-    <a mat-button routerLink="/auth/login">Entrar</a>
+    
+    <ng-container *ngIf="!(user$ | async); else userMenu">
+      <a mat-button routerLink="/auth/login">Entrar</a>
+    </ng-container>
+    <ng-template #userMenu>
+      <button mat-button (click)="logout()">Sair</button>
+    </ng-template>
   </div>
 
   <button mat-icon-button class="menu-button" [matMenuTriggerFor]="menu" aria-label="Menu">
@@ -23,10 +31,13 @@
   <a mat-menu-item routerLink="/">Home</a>
   <a mat-menu-item routerLink="/catalog">Catálogo</a>
   <a mat-menu-item routerLink="/custom">Personalizar</a>
-  <a mat-menu-item routerLink="/cart">Carrinho</a>
-  <a mat-menu-item routerLink="/orders">Pedidos</a>
+  <ng-container *ngIf="user$ | async">
+    <a mat-menu-item routerLink="/cart">Carrinho</a>
+    <a mat-menu-item routerLink="/orders">Pedidos</a>
+  </ng-container>
   <a mat-menu-item routerLink="/support">Suporte</a>
-  <a mat-menu-item routerLink="/auth/login">Entrar</a>
+  <a *ngIf="!(user$ | async)" mat-menu-item routerLink="/auth/login">Entrar</a>
+  <button *ngIf="user$ | async" mat-menu-item (click)="logout()">Sair</button>
 </mat-menu>
 
 <main class="page">

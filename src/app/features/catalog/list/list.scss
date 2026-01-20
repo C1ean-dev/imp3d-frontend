@@ -1,16 +1,108 @@
 .catalog .filters {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  margin-bottom: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+
+  .filters {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 32px;
+    max-width: 400px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 24px; // Espaçamento entre as linhas e colunas
+    grid-template-columns: repeat(2, 1fr); // Força 2x2
+    margin-bottom: 32px;
+  }
 }
-.catalog .grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+mat-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(214, 168, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 100%; // Garante que ocupem a mesma altura
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  mat-card-title {
+    padding: 16px 16px 8px;
+    color: #f5ecff;
+    font-size: 1.2rem;
+  }
+
+  mat-card-subtitle {
+    padding: 0 16px 8px;
+    color: #caa6ff;
+    font-weight: bold;
+  }
+
+  mat-card-content {
+    padding: 0 16px 16px;
+    color: #d9c8ff;
+    flex-grow: 1;
+  }
+
+  mat-card-actions {
+    padding: 8px 16px 16px;
+    gap: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
-mat-card img {
-  height: 160px;
-  object-fit: cover;
-  border-radius: 12px;
+
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(214, 168, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  
+  .skeleton-img, .skeleton-title, .skeleton-text, .skeleton-actions {
+    background: linear-gradient(
+      90deg, 
+      rgba(142, 36, 170, 0.1) 25%, 
+      rgba(142, 36, 170, 0.2) 50%, 
+      rgba(142, 36, 170, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+  }
+
+  .skeleton-img { height: 220px; width: 100%; }
+  .skeleton-title { height: 24px; margin: 16px; width: 60%; border-radius: 4px; }
+  .skeleton-text { height: 48px; margin: 0 16px 16px; width: 85%; border-radius: 4px; }
+  .skeleton-actions { height: 36px; margin: auto 16px 16px auto; width: 120px; border-radius: 12px; }
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 600px) {
+  .catalog .grid {
+    grid-template-columns: 1fr; // Coluna única em mobile
+  }
+}
+
+:host ::ng-deep {
+  .mat-mdc-paginator {
+    background: transparent !important;
+    color: #e9ddff !important;
+    .mat-mdc-paginator-navigation-button {
+      color: #e9ddff !important;
+    }
+  }
 }

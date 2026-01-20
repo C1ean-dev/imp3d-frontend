@@ -14,6 +14,59 @@
 .home a[mat-raised-button]:hover { filter: brightness(1.1); }
 .home a[mat-button] { color: #e9ddff; }
 
+.carousel {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(214,168,255,0.2);
+}
+.carousel-header { display: flex; align-items: center; justify-content: space-between; }
+.controls { display: flex; gap: 8px; }
+
+.carousel .ctrl {
+  border-radius: 999px;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7a2bff, #b06bff);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+.carousel .ctrl[disabled] {
+  opacity: .45;
+  box-shadow: none;
+  filter: none;
+}
+.carousel .ctrl .mat-icon { margin: 0; }
+
+.carousel-body {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+  align-items: center;
+  animation: fadeIn .4s ease both;
+  min-height: 380px;
+}
+.carousel-image img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.carousel-info {
+  display: grid;
+  gap: 10px;
+  color: #e9ddff;
+}
+.carousel-info h3 { font-size: 28px; color: #fff; }
+.carousel-info .price { font-size: 20px; font-weight: 700; }
+
 .home .grid {
   display: grid;
   gap: 16px;
@@ -34,3 +87,8 @@
   text-align: center;
 }
 .home mat-card-title { color: #fff; }
+
+@media (max-width: 900px) {
+  .carousel-body { grid-template-columns: 1fr; min-height: 0; }
+  .carousel-image img { height: 260px; }
+}
